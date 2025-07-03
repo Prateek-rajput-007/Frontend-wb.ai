@@ -174,5 +174,5 @@ This project was developed as a submission for **Wobot.ai's Frontend Challenge**
 ## 📬 Contact
 
 Made with ❤️ by [Prateek Rajput](https://prateek-rajput-portfolio.vercel.app)
-📧 Email: [prateekrajput475@gmail.com](mailto:prprateek2022@gmail.com)
+📧 Email: [prprateek2022@gmail.com](mailto:prprateek2022@gmail.com)
 🐙 GitHub: [@Prateek-rajput-007](https://github.com/Prateek-rajput-007)

@@ -1,9 +1,9 @@
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Filters from './components/Filters';
-import CameraTable from './components/CameraTable';
-import Pagination from './components/Pagination';
+const Header = lazy(() => import('./components/Header'));
+const Filters = lazy(() => import('./components/Filters'));
+const CameraTable = lazy(() => import('./components/CameraTable'));
+const Pagination = lazy(() => import('./components/Pagination'));
 
 const App = () => {
     const [cameras, setCameras] = useState([]);
@@ -96,27 +96,39 @@ const App = () => {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <Header setSearchTerm={setSearchTerm} />
-            <div className="max-w-[1312px] mx-auto px-4 sm:px-6 md:px-8">
-                <Filters
-                    locations={locations}
-                    statuses={statuses}
-                    setLocationFilter={setLocationFilter}
-                    setStatusFilter={setStatusFilter}
-                />
-                <CameraTable
-                    cameras={filteredCameras.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
-                    updateStatus={updateStatus}
-                    handleDelete={handleDelete}
-                />
-                <Pagination
-                    totalItems={filteredCameras.length}
-                    itemsPerPage={itemsPerPage}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    setItemsPerPage={setItemsPerPage}
-                />
-            </div>
+            <Suspense
+                fallback={
+                    <div className="flex flex-col items-center justify-center min-h-[300px]">
+                        <svg className="animate-spin h-8 w-8 text-blue-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                        <span className="text-lg text-gray-600 font-medium">Loading, please wait...</span>
+                    </div>
+                }
+            >
+                <Header setSearchTerm={setSearchTerm} />
+                <div className="max-w-[1312px] mx-auto px-4 sm:px-6 md:px-8">
+                    <Filters
+                        locations={locations}
+                        statuses={statuses}
+                        setLocationFilter={setLocationFilter}
+                        setStatusFilter={setStatusFilter}
+                    />
+                    <CameraTable
+                        cameras={filteredCameras.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)}
+                        updateStatus={updateStatus}
+                        handleDelete={handleDelete}
+                    />
+                    <Pagination
+                        totalItems={filteredCameras.length}
+                        itemsPerPage={itemsPerPage}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        setItemsPerPage={setItemsPerPage}
+                    />
+                </div>
+            </Suspense>
         </div>
     );
 };

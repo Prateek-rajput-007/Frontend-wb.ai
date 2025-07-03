@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+@keyframes infinite-ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-ticker {
+  animation: infinite-ticker linear infinite;
+}
+
+.hover\:animation-pause:hover {
+  animation-play-state: paused;
+}
+
+body, html, * {
+  font-family: Verdana, Geneva, Tahoma !important;
+}

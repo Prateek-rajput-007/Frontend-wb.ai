@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 const Pagination = ({
@@ -34,7 +32,7 @@ const Pagination = ({
                     ))}
                 </select>
             </div>
-            <span className="text-gray-700 text-xs sm:text-sm text-center sm:text-right">
+            <span className="text-gray-700 text-xs sm:text-sm text-center sm:text-right pt-2">
                 {totalItems === 0 ? 'No items' : `${start}-${end} of ${totalItems}`}
             </span>
             <div className="flex items-center justify-center sm:justify-end gap-1 sm:gap-2">
